@@ -250,11 +250,11 @@ When writing XML, ensure proper use of tags and consider edge cases where your X
 
 ## 📚 Links and Resources
 
-- [Hiperskill: Introduction to Kotlin reflection](https://hyperskill.org/learn/step/25896)
-- [Hiperskill: Reflection](https://hyperskill.org/learn/step/30991)
-- [Hiperskill: Generics and Reflection](https://hyperskill.org/learn/step/10088)
-- [Hiperskill: Intro to annotations](https://hyperskill.org/learn/step/22296)
-- [Hiperskill: Custom annotations](https://hyperskill.org/learn/step/23245)
+- [Hyperskill: Introduction to Kotlin reflection](https://hyperskill.org/learn/step/25896)
+- [Hyperskill: Reflection](https://hyperskill.org/learn/step/30991)
+- [Hyperskill: Generics and Reflection](https://hyperskill.org/learn/step/10088)
+- [Hyperskill: Intro to annotations](https://hyperskill.org/learn/step/22296)
+- [Hyperskill: Custom annotations](https://hyperskill.org/learn/step/23245)
 - [Kotlin Reflection Documentation](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/)
 - [Kotlin Data Classes](https://www.baeldung.com/kotlin/reflection)
 - [Kotlin Annotations](https://kotlinlang.org/docs/annotations.html)
@@ -370,3 +370,4 @@ git stash
 - Review before merging.
 - Don't commit .idea/ or build/ directories.
 - Use .gitignore properly.
+
