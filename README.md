@@ -223,7 +223,7 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
 ## 🚀 Extra Challenge (Optional)
 
 - Support **default values** for missing fields
-- Advanced error reporting during deserialization
+- Advanced error reporting during serialization/deserialization
 - Support **custom types** (e.g., `LocalDate`, `UUID` and to use String for this types)
 - Support **enums** and **sealed classes**
 - XML support
