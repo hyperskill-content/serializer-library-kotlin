@@ -1,4 +1,4 @@
-# 📦 Kotlin Reflection-Based Generic Serializer Project
+# 📦 Kotlin Reflection-Based Serializer Project
 
 # Table of Contents
 
@@ -8,19 +8,20 @@
   - [Constraints](#-constraints)
 - [Project Structure](#-project-structure)
 - [Suggested Development Steps](#-suggested-development-steps)
-  - [1. Define Annotations](#1-define-annotations)
-  - [2. Implement Reflection Utilities](#2-implement-reflection-utilities)
-  - [3. Design Core Interfaces](#3-design-core-interfaces)
-  - [4. Format-Specific Implementations](#4-format-specific-implementations)
-    - [4.1 YAML](#41-yaml)
-    - [4.2 XML](#42-xml)
+  - [Define Annotations](#1-define-annotations)
+  - [Implement Reflection Utilities](#2-implement-reflection-utilities)
+  - [Design Core Interfaces](#3-design-core-interfaces)
+  - [Format-Specific Implementations](#4-format-specific-implementations)
+    - [YAML](#yaml)
+- [Examples](#-examples)
 - [Testing](#-testing)
 - [Deliverables](#-deliverables)
 - [Extra Challenge (Optional)](#-extra-challenge-optional)
+    - [XML](#xml)
 - [Links and Resources](#-links-and-resources)
 - [Collaborating on the Project](#-collaborating-on-the-project)
   - [Prerequisites](#prerequisites)
-  - [Basic knowledge of Git (clone, commit, push, pull).](#basic-knowledge-of-git-clone-commit-push-pull)
+  - [Git Basics](#git-basics)
   - [Create the Repository](#create-the-repository)
   - [Clone the Repository](#clone-the-repository)
   - [Create a New Branch for Your Work](#create-a-new-branch-for-your-work)
@@ -32,12 +33,13 @@
   - [Avoid Merge Conflicts](#avoid-merge-conflicts)
   - [Best Practices](#best-practices)
 
+
 ## 🧠 Project Objective
 
-Your goal is to create a **generic serialization and deserialization library** in **Kotlin** using **reflection**. The library must work with _any Kotlin data class_ and support multiple output formats:
+Your goal is to create a **serialization and deserialization library** in **Kotlin** using **reflection**. The library must work with _any Kotlin data class_ and support multiple output formats:
 
 - **YAML**
-- **XML** (advanced and optional)
+- **XML** (see Extra Challenge below)
 
 You **must not** use libraries like `kotlinx.serialization`, Jackson, Gson, Moshi, or similar. The aim is to deeply understand how serialization works and how frameworks like Spring use reflection.
 
@@ -50,7 +52,7 @@ Ensure that your serializers and deserializers are robust by testing with differ
 - Serialize and deserialize _any Kotlin data class_ to/from:
 
   - **YAML** (key-value indented)
-  - **XML** (with root and field tags)
+  - **XML** (with root and field tags, see Extra Challenge below)
 
 - Support:
 
@@ -125,38 +127,31 @@ Create helper functions to:
 The interfaces will define the contract for your serializers and deserializers. Think about how you can make these interfaces generic and flexible to support any data type and nested structures.
 
 ```kotlin
-interface Serializer<T> {
-    fun serialize(entity: T): String
-    fun serializeList(entities: List<T>): String
+interface Serializer {
+    fun <T : Any> serialize(entity: T): String
+    fun <T : Any> serializeList(entities: List<T>): String
 }
 
-interface Deserializer<T> {
-    fun deserialize(input: String, clazz: KClass<T>): T
-    fun deserializeList(input: String, clazz: KClass<T>): List<T>
+interface Deserializer {
+    fun <T : Any> deserialize(input: String, clazz: KClass<T>): T
+    fun <T : Any> deserializeList(input: String, elementClazz: KClass<T>): List<T>
 }
 ```
 
 ### 4. Format-Specific Implementations
 
-For each format (YAML, XML), create:
+For each format, create:
 
 - A `Serializer` class implementing serialization logic
 - A `Deserializer` class to parse back the string into objects
 
-#### 4.1 YAML
+#### YAML
 
 YAML's significant whitespace can be tricky. Make sure your implementation captures correct indentation levels for nested structures.
 
 - Use `key: value` structure
 - Use indentation for nesting
 - Lists are prefixed with `-`
-
-#### 4.2 XML
-
-When writing XML, ensure proper use of tags and consider edge cases where your XML might need to handle attributes versus nested tags.
-
-- Use tags for fields
-- Use the class name (or `@SerializableRoot`) as the root element
 
 ## 🔮 Examples
 
@@ -168,7 +163,7 @@ data class Book(
     val year: Int
 )
 
-data class Author(val name: String, val birthdate: LocalDate)
+data class Author(val name: String, val birthdate: String)
 ```
 
 **YAML example:**
@@ -181,26 +176,13 @@ author:
 year: 1605
 ```
 
-**XML example:**
-
-```xml
-<book>
-    <title>Don Quixote</title>
-    <author>
-        <name>Miguel de Cervantes</name>
-        <birthdate>1547-09-29</birthdate>
-    </author>
-    <year>1605</year>
-</book>
-```
-
 ## 🕹️ Testing
 
 Create comprehensive test cases to cover all supported formats and edge cases. Use both positive (valid data) and negative (incorrect or malformed data) test scenarios to ensure robustness.
 
 - Create a `testcases/` folder with files:
 
-  - `book.yaml`, `book.xml`
+  - `book.yaml`
   - Corresponding expected files
 
 - Write a test script to:
@@ -213,9 +195,19 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
 
 - Source code for:
 
-  - YAML, XML serializers and deserializers
+  - YAML serializers and deserializers
   - Annotations
+  - Error handling and reporting when serialization/deserialization fails (e.g., missing fields, nulls, incorrect types)
   - Example models
+
+- Implement **unit tests** for each component
+  - Test cases for:
+    - Edge cases
+    - Serialization
+    - Deserialization
+    - Error handling
+  - Use `testcases/` folder for input and expected output files
+  - Use `testcases/input/` for input Files
 
 - README with:
 
@@ -231,9 +223,30 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
 ## 🚀 Extra Challenge (Optional)
 
 - Support **default values** for missing fields
-- Add type inference and error reporting during deserialization
-- Support **custom types** (e.g., `LocalDate`, `UUID`)
-- Implement **unit tests** for each component
+- Add type inference and advanced error reporting during deserialization
+- Support **custom types** (e.g., `LocalDate`, `UUID` and to use String for this types)
+- Support **enums** and **sealed classes**
+- XML support
+
+### XML
+
+When writing XML, ensure proper use of tags and consider edge cases where your XML might need to handle attributes versus nested tags.
+
+- Use tags for fields
+- Use the class name (or `@SerializableRoot`) as the root element
+
+**XML example:**
+
+```xml
+<book>
+    <title>Don Quixote</title>
+    <author>
+        <name>Miguel de Cervantes</name>
+        <birthdate>1547-09-29</birthdate>
+    </author>
+    <year>1605</year>
+</book>
+```
 
 ## 📚 Links and Resources
 
