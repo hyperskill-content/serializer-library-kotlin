@@ -223,7 +223,7 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
 ## 🚀 Extra Challenge (Optional)
 
 - Support **default values** for missing fields
-- Add type inference and advanced error reporting during deserialization
+- Advanced error reporting during deserialization
 - Support **custom types** (e.g., `LocalDate`, `UUID` and to use String for this types)
 - Support **enums** and **sealed classes**
 - XML support
@@ -370,4 +370,3 @@ git stash
 - Review before merging.
 - Don't commit .idea/ or build/ directories.
 - Use .gitignore properly.
-
