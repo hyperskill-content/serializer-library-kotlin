@@ -29,16 +29,14 @@
 - Initialize it with a README file and use the Kotlin template for the .gitignore file to avoid committing unnecessary files like IDE settings or build artifacts.
 - Add collaborators in Settings > Collaborators (if using a private repo).
 
-2. Clone the Repository
-   Each team member should clone the repository to their local machine:
+2. Clone the Repository- Each team member should clone the repository to their local machine:
 
 ```bash
 git clone https://github.com/username/library-system-kotlin.git
 cd library-system-kotlin
 ```
 
-3. Create a New Branch for Your Work
-   Always create a new branch to work on a specific feature or task.
+3. Create a New Branch for Your Work Always create a new branch to work on a specific feature or task.
 
 ```bash
 git checkout -b feature/add-book-class
