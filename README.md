@@ -17,8 +17,9 @@
 - [Testing](#-testing)
 - [Deliverables](#-deliverables)
 - [Extra Challenge (Optional)](#-extra-challenge-optional)
-    - [XML](#xml)
+  - [XML](#xml)
 - [Links and Resources](#-links-and-resources)
+- [Contributing](#-contributing)
 
 ## 🧠 Project Objective
 
@@ -187,6 +188,7 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
   - Example models
 
 - Implement **unit tests** for each component
+
   - Test cases for:
     - Edge cases
     - Serialization
@@ -200,11 +202,6 @@ Create comprehensive test cases to cover all supported formats and edge cases. U
   - Setup instructions
   - Usage examples
   - Team members
-
-- GitHub repo with:
-
-  - Commit history
-  - At least 3 pull requests
 
 ## 🚀 Extra Challenge (Optional)
 
@@ -251,4 +248,6 @@ When writing XML, ensure proper use of tags and consider edge cases where your X
 - [Mastering Java Reflection: Building a Custom JSON Parser from Scratch](https://www.youtube.com/watch?v=dLDXsq8Nr4o)
 - [YAML Tutorial : A Complete Language Guide with Examples](https://spacelift.io/blog/yaml)
 
+## 📝 Contributing
 
+All discussions and bug reports must be done via GitHub Issues, while code review is done via GitHub Pull Requests. For more information, see the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
